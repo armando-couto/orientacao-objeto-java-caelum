@@ -1,0 +1,8 @@
+package aula1;
+
+public class GerenciadoraDeDividas {
+
+	public void efetuaPagamento(Divida divida, double valor) {
+		divida.paga(valor);
+	}
+}

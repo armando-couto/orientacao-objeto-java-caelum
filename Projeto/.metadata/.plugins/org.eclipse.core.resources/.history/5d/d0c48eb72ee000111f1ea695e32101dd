@@ -1,0 +1,64 @@
+package aula1;
+
+import java.util.ArrayList;
+
+public class Divida {
+	
+	private double total;
+	private double valorPago;
+	private String credor;
+	private String cnpjCredor;
+	private ArrayList<Pagamento> pagamentos = new ArrayList<Pagamento>();
+	private ArrayList<Divida> dividas = new ArrayList<Divida>();
+	
+	public double getTotal() {return total;}
+	public void setTotal(double total) {this.total = total;}
+	
+	// Não pode ter o setValorPago, pois quebra encapilulamento.
+	public double getValorPago() {return valorPago;}
+	
+	public String getCredor() {return credor;}
+	public void setCredor(String credor) {this.credor = credor;}
+	
+	public String getCnpjCredor() {return cnpjCredor;}
+	public void setCnpjCredor(String cnpjCredor) {this.cnpjCredor = cnpjCredor;}
+	
+	// Não pode ter o setValorPago, pois quebra encapilulamento.
+	public ArrayList<Pagamento> getPagamentos() {return pagamentos;}
+	
+	// Não pode ter o setDividas, pois quebra encapilulamento.
+	public ArrayList<Divida> getDividas() {
+		return dividas;
+	}
+
+	/**
+	 * Método paga.
+	 * @param valor
+	 */
+	private void paga(double valor) {
+		if (valor < 0) {
+			throw new IllegalAccessError("Valor inválido para pagamento.");
+		}
+		if (valor > 100) {
+			valor = valor - 8;
+		}
+		this.valorPago += valor;
+	}
+	
+	/**
+	 * Método registra
+	 * @param pagamento
+	 */
+	public void registra(Pagamento pagamento) {
+		this.pagamentos.add(pagamento);
+		this.paga(pagamento.getValor());
+	}
+	
+	/**
+	 * Método que atualiza valorPago.
+	 * @param pagamento
+	 */
+	public void atualizar(Pagamento pagamento, int posicao) {
+		this.pagamentos.set(posicao, pagamento);		
+	}
+}
